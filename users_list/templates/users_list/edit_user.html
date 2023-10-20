@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Edit User</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username" value="{{ user.username }}" required>
+
+    <label for="group">Group:</label>
+    <select name="group">
+        {% for group in groups %}
+            <option value="{{ group.id }}"
+            {% if group.id == user.group.id %} selected {% endif %}>
+            {{ group.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'users_list:users' %}">Cancel</a>
+{% endblock content %}

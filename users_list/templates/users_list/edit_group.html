@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Edit Group</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="{{ group.name }}" required>
+
+    <label for="description">Description:</label>
+    <textarea name="description" required>{{ group.description }}</textarea>
+
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'users_list:groups' %}">Cancel</a>
+{% endblock content %}

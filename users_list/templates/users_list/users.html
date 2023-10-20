@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<a href="{% url 'users_list:index' %}">Menu</a>
+<a href="{% url 'users_list:add_user' %}">Add user</a>
+
+
+
+<h1>List of Users</h1>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Created</th>
+        <th>Group</th>
+        <th>Actions</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.created }}</td>
+        <td>{{ user.group.name }}</td>
+        <td>
+            <button><a href="{% url 'users_list:edit_user' user.id %}">Edit</a></button>
+            <button><a href="{% url 'users_list:del_user' user.id %}">Delete</a></button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
